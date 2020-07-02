@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>A basic map with Leaflet</title>
+    <title>Inzicht in het Achterland: Ruimtelijke Adaptatie</title>
 
     <!--add Leaflet CSS-->
     <link rel="stylesheet" href="style.css" />
@@ -16,121 +16,171 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.1.1/chroma.min.js"></script>
-
-
     <!--our own style rules-->
 
     <style type="text/css">
-        body,
         html {
-            height: 90%;
+            height: 100vh;
+        }
+
+        body {
+            min-height: 100vh;
         }
 
         #map-container {
-            height: 100%;
+            min-height: calc(100vh - 100px);
+            height: calc(100vh - 100px);
         }
     </style>
+
+    <link rel="stylesheet" href="./leaflet-sidebar/L.Control.Sidebar.css" />
+
 
 </head>
 
 <body>
 
-    <h1>Use Case 2: Ruimtelijke Adaptatie</h1>
-    <!--The div in which the map will be created-->
+    <div id="header">
+        <h1 id=site-title>Inzicht in het Achterland<span id="page-title">Ruimtelijke Adaptatie</span></h1>
+    </div>
     <div class="parent">
-        <div class="child left">
-            <button onclick="polySelect('NL.IMRO.0530.BPMolenstraat2009-VO02')">NL.IMRO.0530.BPMolenstraat2009-VO02</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPMolenstraat2009-ow01')">NL.IMRO.0530.BPMolenstraat2009-ow01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPHeliushaven-VO01')">NL.IMRO.0530.BPHeliushaven-VO01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPHeliushaven-ow01')">NL.IMRO.0530.BPHeliushaven-ow01            </button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPKickersbloem2012-vo01')">NL.IMRO.0530.BPKickersbloem2012-vo01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPBuitengebied2011-vo01')">NL.IMRO.0530.BPBuitengebied2011-vo01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPRavenseHoek2011-VO01')">NL.IMRO.0530.BPRavenseHoek2011-VO01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPDeVesting2011-ON01')">NL.IMRO.0530.BPDeVesting2011-ON01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPNieuwenhoorn2011-VO01')">NL.IMRO.0530.BPNieuwenhoorn2011-VO01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPRecreatie2011-ON01')">NL.IMRO.0530.BPRecreatie2011-ON01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BPKooistee2009-vo01')">NL.IMRO.0530.BPKooistee2009-vo01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0530.BP30Molshoek2010-ow01')">NL.IMRO.0530.BP30Molshoek2010-ow01</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.1930.WPZLDKVNFASE1B-1001')">NL.IMRO.1930.WPZLDKVNFASE1B-1001</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0614.1209bpHoofdwg2017-0010')">NL.IMRO.0614.1209bpHoofdwg2017-0010</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0614.1210waboStryp48-0010')">NL.IMRO.0614.1210waboStryp48-0010</button>
-            <br>
-            <button onclick="polySelect('NL.IMRO.0501.VP1eherziening-0120')">NL.IMRO.0501.VP1eherziening-0120</button>
-            <br>
+        <div class="child map">
+            <div id="left-sidebar">
+                <h1>Ruimtelijke plannen</h1>
 
-        </div>
-        <div class="child middle">
+                <!-- <div class="outer-parent">
+
+                    <div class="inner-child">
+                        <div class="item-left"></div>
+                        <div class="item-middle"></div>
+                        <div class="item-right"></div>
+                    </div>
+                </div> -->
+
+                <button class = "ruimtelijkplan" onclick="polySelect('NL.IMRO.0530.BPKickersbloem2012-vo01')">
+                    <p><b>Naam:</b> Bedrijventerrein Kickersbloem 3<br>
+                    <b>Overheid: </b> Hellevoetsluis<br>
+                    <b>Identificatie:</b> NL.IMRO.0530.BPKickersbloem2012-vo01</p>
+                </button>
+                <br>
+                <button class = "ruimtelijkplan" onclick="polySelect('NL.IMRO.0530.BPBuitengebied2011-vo01')">
+                    <p><b>Naam:</b> Buitengebied Hellevoetsluit<br>
+                    <b>Overheid: </b> Gemeente Hellevoetsluis<br>
+                    <b>Identificatie:</b> NL.IMRO.0530.BPBuitengebied2011-vo01</p>
+                </button>
+                <br>
+                <button class = "ruimtelijkplan" onclick="polySelect('NL.IMRO.0530.BPRavenseHoek2011-VO01')">
+                    <p><b>Naam:</b> Ravensehoek<br>
+                    <b>Overheid:</b> Gemeente Hellevoetsluis<br>
+                    <b>Identificatie:</b> NL.IMRO.0530.BPRavenseHoek2011-VO01</p>
+                </button>
+                <br>
+                <button class = "ruimtelijkplan" onclick="polySelect('NL.IMRO.0530.BPDeVesting2011-ON01')">
+                    <p><b>Naam:</b> De Vesting<br>
+                    <b>Overheid:</b> Gemeente Hellevoetsluis<br>
+                    <b>Identificatie:</b> NL.IMRO.0530.BPDeVesting2011-ON01</p>
+                </button>
+                <br>
+                <button class = "ruimtelijkplan" onclick="polySelect('NL.IMRO.0530.BPNieuwenhoorn2011-VO01')">
+                    <p><b>Naam:</b> Nieuwenhoorn<br>
+                    <b>Overheid:</b> Gemeente Hellevoetsluis<br>
+                    <b>Identificatie:</b>NL.IMRO.0530.BPNieuwenhoorn2011-VO01</p>
+                </button>
+                <br>
+                <button class = "ruimtelijkplan" onclick="polySelect('NL.IMRO.0530.BPRecreatie2011-ON01')">
+                    <p><b>Naam:</b> Recreatie<br>
+                    <b>Overheid: </b> Gemeente Hellevoetsluis<br>
+                    <b>Identificatie:</b> NL.IMRO.0530.BPRecreatie2011-ON01</p>
+                </button>
+                <br>
+                <button class = "ruimtelijkplan" onclick="polySelect('NL.IMRO.0530.BPKooistee2009-vo01')">
+                    <p><b>Naam:</b> De Kooistee<br>
+                    <b>Overheid:</b> Gemeente Hellevoetsluis<br>
+                    <b>Identificatie:</b> NL.IMRO.0530.BPKooistee2009-vo01</p>
+                </button>
+                <br>
+                <button class = "ruimtelijkplan" onclick="polySelect('NL.IMRO.0530.BP30Molshoek2010-ow01')">
+                    <p><b>Naam:</b> Molshoek<br>
+                    <b>Overheid:</b> Gemeente Hellevoetsluis<br>
+                    <b>Identificatie:</b> NL.IMRO.0530.BP30Molshoek2010-ow01</p>
+                </button>
+                <br>
+                <button class = "ruimtelijkplan" onclick="polySelect('NL.IMRO.0614.1209bpHoofdwg2017-0010')">
+                    <p><b>Naam:</b> Hoofdweg Oostvoorne 2017<br>
+                    <b>Overheid:</b> Gemeente Westvoorne<br>
+                    <b>Identificatie:</b> NL.IMRO.0614.1209bpHoofdwg2017-0010</p>
+                </button>
+            </div>
+            <div id="right-sidebar">
+                <h1 class='attribute_group_title'>Planinformatie</h1>
+                    <p class='attribute_title'>Identicatie</p>
+                    <p id='identificatie'></p>
+                    <p class='attribute_title'>Naam</p>
+                    <p id='naam'></p>
+                    <p class='attribute_title'>Datum</p>
+                    <p id='datum'></p>
+                    <p class='attribute_title'>Verwijzing</p>
+                    <p id='verwijzing'></p>
+                    <p class='attribute_title'>Type plan</p>
+                    <p id='type_plan'></p>
+                    <p class='attribute_title'>Planstatus</p>
+                    <p id='plan_status'></p>
+                    <p class='attribute_title'>Naam overheid</p>
+                    <p id='naam_overheid'></p>
+                <h1 class='attribute_group_title'>Overstromingsinformatie</h1>
+                <p class='attribute_title'>Maximale waterdiepte (meter)</p> 
+                <input id="wms" type="checkbox" onclick="layerControl();">
+                <label for="wms"> Toon op kaart</label><br>
+                <p id='maximale_waterdiepte'></p>
+                <p class='attribute_title'>Maximale plaatsgebonden overstromingskans</p>
+                <p id='maximale_plaatsgebonden_overstromingskans'></p>
+                <p class='attribute_title'>Stijgsnelheid</p>
+                <p id='stijgsnelheid'></p>
+                <p class='attribute_title'>Aankomsttijd</p>
+                <p id='aankomsttijd'></p>
+                <p class='attribute_title'>Stroomsnelheid</p>
+                <p id='stroomsnelheid'></p>
+            </div> 
             <div id="map-container"></div>
         </div>
-        <div class="child right">
+        <!-- <div class="child right">
             <div class="sidebar">
                 <h2 class='attribute_group_title'>Planinformatie</h2>
                     <p class='attribute_title'>Identicatie</p>
-                    <p id='f2'></p>
+                    <p id='identificatie'></p>
                     <p class='attribute_title'>Naam</p>
-                    <p id='f3'></p>
+                    <p id='naam'></p>
                     <p class='attribute_title'>Datum</p>
-                    <p id='f1'></p>
+                    <p id='datum'></p>
                     <p class='attribute_title'>Verwijzing</p>
-                    <p id='f8'></p>
+                    <p id='verwijzing'></p>
                     <p class='attribute_title'>Type plan</p>
-                    <p id='f7'></p>
+                    <p id='type_plan'></p>
                     <p class='attribute_title'>Planstatus</p>
-                    <p id='f6'></p>
+                    <p id='plan_status'></p>
                     <p class='attribute_title'>Naam overheid</p>
-                    <p id='f5'></p>
+                    <p id='naam_overheid'></p>
                 <h2 class='attribute_group_title'>Overstromingsinformatie</h2>
-                <p class='attribute_title'>Maximale waterdiepte max</p>
-                <p id='f11'></p>
+                <p class='attribute_title'>Maximale waterdiepte (meter)</p>
+                <p id='maximale_waterdiepte'></p>
                 <p class='attribute_title'>Maximale plaatsgebonden overstromingskans</p>
-                <p id='f9'></p>
-                <p class='attribute_title'>Maximalewaterdieptes</p>
-                <p id='f13'></p>
-                    <!-- <p class='attribute_title'>Beleidsmve</p>
-                    <p id='f4'></p>
-
-                    <p class='attribute_title'>Beschrijvi</p>
-                    <p id='f10'></p>
-
-                    <p class='attribute_title'>Scenarios</p>
-                    <p id='f12'></p>
-
-                    <p class='attribute_title'>Uuids</p>
-                    <p id='f14'></p>
-                    <p class='attribute_title'>Traject_id</p>
-                    <p id='f15'></p>
-                    <p class='attribute_title'>Norm_sign</p>
-                    <p id='f16'></p>
-                    <p class='attribute_title'>Norm_onder</p>
-                    <p id='f17'></p> -->
-                
+                <p id='maximale_plaatsgebonden_overstromingskans'></p>
+                <p class='attribute_title'>Stijgsnelheid</p>
+                <p id='stijgsnelheid'></p>
+                <p class='attribute_title'>Aankomsttijd</p>
+                <p id='aankomsttijd'></p>
+                <p class='attribute_title'>Stroomsnelheid</p>
+                <p id='stroomsnelheid'></p>       
 
             </div>
-        </div>
+        </div> -->
 
 
         <!--load leaflet.js-->
 
         <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
             integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
-            crossorigin=""></script>
-
-
+            crossorigin=""></script
 
         <!--code we need to use a different projection-->
 
@@ -138,11 +188,15 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.min.js"></script>
 
+        <script src="./leaflet-sidebar/L.Control.Sidebar.js"></script>
+
 
 
         <!--our own code to create the map-->
 
         <script>
+
+         
 
             //define the custom projection tileset (Amersfoort/RD)
 
@@ -165,7 +219,7 @@
 
             //but the zoomlevel is now different (it uses the resolutions defined in our projection tileset above)
 
-            map.setView([51.838, 4.098], 7);
+            map.setView([51.838, 4.150], 8);
 
             //add background layer in custom projection
 
@@ -184,6 +238,12 @@
                 transparent: true,
                 format: 'image/png'
             }).addTo(map);
+
+            let wmsLayer = new L.TileLayer.WMS('https://nens.lizard.net/wms/raster_bcbc32a5-8602-4cac-b3b1-51fc7eabc435/?', {
+                layers: 'nelen-schuurmans:plaatsgebonden_overstroming_primaire_k-4wstxb9z',
+                transparent: true,
+                format: 'image/png'
+            });
 
             // let layer_ruimtelijkeplannen = new L.TileLayer.WMS('https://maps1.project.lizard.net/geoserver/p_iiha_lizard/wfs', {
             //     layers: 'p_iiha_lizard:v0101_iiha_ruimte_plannen_dkr20_01012021',
@@ -217,32 +277,45 @@
             }
 
             function displayAttributes(e) {
-                var field1 = document.getElementById('f1');
-                field1.innerHTML = e.target.feature.properties.datum;
-                var field2 = document.getElementById('f2');
-                field2.innerHTML = e.target.feature.properties.identifica;
-                var field3 = document.getElementById('f3');
-                field3.innerHTML = e.target.feature.properties.naam;
+                var datum = document.getElementById('datum');
+                datum.innerHTML = e.target.feature.properties.datum;
+                var identificatie = document.getElementById('identificatie');
+                identificatie.innerHTML = e.target.feature.properties.identifica;
+                var naam = document.getElementById('naam');
+                naam.innerHTML = e.target.feature.properties.naam;
                 // var field4 = document.getElementById('f4');
                 // field4.innerHTML = e.target.feature.properties.beleidsmve;
-                var field5 = document.getElementById('f5');
-                field5.innerHTML = e.target.feature.properties.naamoverhe;
-                var field6 = document.getElementById('f6');
-                field6.innerHTML = e.target.feature.properties.planstatus;
-                var field7 = document.getElementById('f7');
-                field7.innerHTML = e.target.feature.properties.typeplan;
-                var field8 = document.getElementById('f8');
-                field8.innerHTML = e.target.feature.properties.verwijzing;
-                var field9 = document.getElementById('f9');
-                field9.innerHTML = e.target.feature.properties.maximalepl;
+                var naam_overheid = document.getElementById('naam_overheid');
+                naam_overheid.innerHTML = e.target.feature.properties.naamoverhe;
+                var planstatus = document.getElementById('plan_status');
+                planstatus.innerHTML = e.target.feature.properties.planstatus;
+                var type_plan = document.getElementById('type_plan');
+                type_plan.innerHTML = e.target.feature.properties.typeplan;
+                var verwijzing = document.getElementById('verwijzing');
+                verwijzing.innerHTML = e.target.feature.properties.verwijzing;
+                var max_plaatsgebonden_overstromingskans = document.getElementById('maximale_plaatsgebonden_overstromingskans');
+                max_plaatsgebonden_overstromingskans.innerHTML = e.target.feature.properties.maximalepl + ": " + e.target.feature.properties.beschrijvi;
+                console.log(e.target.feature.properties)
                 // var field10 = document.getElementById('f10');
                 // field10.innerHTML = e.target.feature.properties.beschrijvi;
-                var field11 = document.getElementById('f11');
-                field11.innerHTML = e.target.feature.properties.maximalewa;
+                var maximale_waterdiepte = document.getElementById('maximale_waterdiepte');
+                maximale_waterdiepte.innerHTML = Math.round((e.target.feature.properties.maximalewa + Number.EPSILON) * 100) / 100;
+                var stijgsnelheid = document.getElementById('stijgsnelheid');
+                // stijgsnelheid.innerHTML = e.target.feature.properties.stijgsnelh;
+                stijgsnelheid.innerHTML = "Binnenkort beschikbaar"
+                var aankomsttijd = document.getElementById('aankomsttijd');
+                // aankomsttijd.innerHTML = e.target.feature.properties.aankomstij;
+                aankomsttijd.innerHTML = "Binnenkort beschikbaar"
+                var stroomsnelheid = document.getElementById('stroomsnelheid'); 
+                // stroomsnelheid.innerHTML = e.target.feature.properties.stroomsnel;
+                stroomsnelheid.innerHTML = "Binnenkort beschikbaar"
+                
+
+
                 // var field12 = document.getElementById('f12');
                 // field12.innerHTML = e.target.feature.properties.scenarios;
-                var field13 = document.getElementById('f13');
-                field13.innerHTML = e.target.feature.properties.maximale_1;
+                // var field13 = document.getElementById('maximale_waterdieptes');
+                // field13.innerHTML = e.target.feature.properties.maximale_1;
                 // var field14 = document.getElementById('f14');
                 // field14.innerHTML = e.target.feature.properties.uuids;
                 // var field15 = document.getElementById('f15');
@@ -254,19 +327,23 @@
             }
 
             function selectFeature(e) {
+                rightsidebar.show();
+                map.eachLayer(function(layer) {
+    if(layer.options.pane === "tooltipPane") layer.removeFrom(map);
+});
                 zoomToFeature(e);
                 displayAttributes(e);
+                
             }
 
             function onEachFeature(feature, layer) {
                 layer._leaflet_id = feature.properties.identifica;
-                console.log(layer._leaflet_id);
                 layer.on({
                     mouseover: highlightFeature,
                     mouseout: resetHighlight,
                     click: selectFeature
                 });
-                layer.bindTooltip(feature.properties.identifica);
+                layer.bindTooltip(feature.properties.naam);
             }
 
             var geojson = L.geoJson(null,
@@ -299,42 +376,93 @@
 
             function getStyle(features) {
                 var status = features.properties.planstatus;
-                var colour;
-                if (status == "concept") {
-                    colour = '#f00'
-                } else if (status == 'voorontwerp') {
-                    colour = '#0f0'
-                } else {
-                    colour = '#00f'
-                }
-
                 return {
                     color: '#fff',
                     fillColor: getColour(status),
                     weight: 0.8,
                     opacity: 1,
-                    fillOpacity: 0.5
+                    fillOpacity: 0.6
                 }
-            }
+            }  
 
             function getColour(d) {
                 var colour;
                 if (d == "concept") {
-                    colour = '#f00'
-                } else if (d == 'voorontwerp') {
-                    colour = '#0f0'
+                    colour = '#ffd2a2'
+                } else if (d == "voorontwerp") {
+                    colour = '#ffad5f'
                 } else {
-                    colour = '#00f'
+                    colour = '#ff8535'
                 }
                 return colour;
             }
+
             
 
 // fire off click event and zoom to polygon  
 function polySelect(a){
+        map._layers[a].fire('viewreset')
         map._layers[a].fire('click');  // 'clicks' on state name from search
 }
 
+var legend = L.control({position: 'bottomright'})
+
+var planstatus;
+
+legend.onAdd = function (map) {
+	var div = L.DomUtil.create('div', 'info legend');
+	planstatus = ['concept', 'voorontwerp', 'ontwerp'];
+		
+	// loop through the status values and generate a label with a coloured square for each value
+	for (var i = 0; i < planstatus.length; i++) {
+		div.innerHTML +=
+			'<i class="square" style="background:' + getColour(planstatus[i]) + '"></i> ' + (planstatus[i] ? planstatus[i] + '<br>' : '+');
+	}
+	return div;
+};
+legend.addTo(map);
+
+var leftsidebar = L.control.sidebar('left-sidebar', {
+            closeButton: true,
+            position: 'left'
+        });
+        map.addControl(leftsidebar);
+
+        setTimeout(function () {
+            leftsidebar.show();
+        }, 500);
+
+        var rightsidebar = L.control.sidebar('right-sidebar', {
+            closeButton: true,
+            position: 'right'
+        });
+        map.addControl(rightsidebar);
+
+        L.DomEvent.on(leftsidebar.getCloseButton(), 'click', function () {
+            console.log('Close button clicked.');
+        });
+
+        // map.on('click', function () {
+        //     rightsidebar.toggle();
+        // })
+
+        function layerControl() {
+                var checkBox = document.getElementById("wms");
+                  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    wmsLayer.addTo(map)
+    geojson.setStyle(
+        {fillOpacity : 0,
+        color: "black"}
+    )
+  } else {
+    wmsLayer.removeFrom(map)
+    geojson.setStyle(
+        {fillOpacity : 0.6,
+            color: "white"}
+    )
+  }
+}   
 
         </script>
 

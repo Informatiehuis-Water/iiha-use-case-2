@@ -2,9 +2,26 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-h1 {
-    color: rgb(37, 108, 195);
+#site-title {
+    font-size: 15px;
+    font-weight: 300;
+    padding-left: 50px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    vertical-align: center;
 }
+
+.ruimtelijkplan {
+    text-align: left;
+    width: 400px;
+}
+
+#page-title {
+    color: rgb(37, 108, 195);
+    font-weight: 800;
+}
+
+#page-title:before { content: "\00a0 \00a0 \00a0 \00a0 "; }
 
 h2 {
     font-weight: 300;
@@ -12,15 +29,42 @@ h2 {
 
 .parent {
     display: flex;
-    height: 300px; /* Or whatever */
   }
+
+.outer-parent {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-child {
+    background: yellowgreen;
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    height: 70px;
+}
+
+.item-left {
+    background: orangered;
+    width: 50px;
+}
+
+.item-middle {
+    background: blueviolet;
+    width: 50px;
+}
+
+.item-right {
+    background: greenyellow;
+    width: 50px;
+}
   
   .child {
-    height: 100vh; /* Or whatever */
     margin: auto;  /* Magic! */
   }
 
-  .middle {
+  .map {
       width: 100vw;
   }
 
@@ -30,8 +74,41 @@ h2 {
 
   .right {
       width: 400px;
+      padding: 30px;
   }
 
   .attribute_title {
       font-weight: bold;
   }
+
+  #header {
+      border-bottom: 1px solid lightgray;
+  }
+
+  .parent {
+      padding-top: 30px;
+      width: 100hw;
+      background-color: #F4F4F4;
+  }
+
+  .legend {
+    background: white;
+    padding: 10px;
+    text-align: left;
+    line-height: 20px;
+    color: #555;
+    }
+
+    .legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+    }
+
+    .legend .square {
+    width: 10px;
+    height: 10px;
+    margin-top: 8px;
+    }
