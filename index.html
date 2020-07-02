@@ -129,10 +129,10 @@
                     <p id='naam_overheid'></p>
                 <h1 class='attribute_group_title'>Overstromingsinformatie</h1>
                 <p class='attribute_title'>Maximale waterdiepte (meter)</p> 
-                <input id="wms" type="checkbox" onclick="layerControl();">
-                <label for="wms"> Toon op kaart</label><br>
                 <p id='maximale_waterdiepte'></p>
                 <p class='attribute_title'>Maximale plaatsgebonden overstromingskans</p>
+		<input id="wms" type="checkbox" onclick="layerControl();">
+                <label for="wms"> Toon op kaart</label><br>
                 <p id='maximale_plaatsgebonden_overstromingskans'></p>
                 <p class='attribute_title'>Stijgsnelheid</p>
                 <p id='stijgsnelheid'></p>
@@ -295,7 +295,6 @@
                 verwijzing.innerHTML = e.target.feature.properties.verwijzing;
                 var max_plaatsgebonden_overstromingskans = document.getElementById('maximale_plaatsgebonden_overstromingskans');
                 max_plaatsgebonden_overstromingskans.innerHTML = e.target.feature.properties.maximalepl + ": " + e.target.feature.properties.beschrijvi;
-                console.log(e.target.feature.properties)
                 // var field10 = document.getElementById('f10');
                 // field10.innerHTML = e.target.feature.properties.beschrijvi;
                 var maximale_waterdiepte = document.getElementById('maximale_waterdiepte');
